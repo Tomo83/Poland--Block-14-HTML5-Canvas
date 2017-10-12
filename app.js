@@ -19,11 +19,11 @@
          ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
      // Text attributes
-     ctx.font = '30pt Impact';
+     ctx.font = '36pt Impact';
      ctx.textAlign = 'center';
-     ctx.strokeStyle = 'black';
-     ctx.lineWidth = 3;
-     ctx.fillStyle = 'white';
+     ctx.strokeStyle = '#000000';
+     ctx.lineWidth = 2;
+     ctx.fillStyle = '#ffffff';
 
      if (topLine != null) {
          ctx.fillText(topLine, canvas.width / 2, 40);
@@ -37,7 +37,19 @@
  }
 
  function saveFile() {
-     window.open(document.querySelector('canvas').toDataURL());
+     var ua = window.navigator.userAgent;
+
+     if (ua.indexOf('Chrome') > 0) {
+         var canvas = document.querySelector('canvas');
+         var link = document.createElement('a');
+         
+         link.download = "image.jpg";
+         link.href = canvas.toDataURL();
+         link.click();
+     } else {
+         window.open(document.querySelector('canvas').toDataURL());
+     }
+
  }
 
  function handleFileSelect(evt) {
